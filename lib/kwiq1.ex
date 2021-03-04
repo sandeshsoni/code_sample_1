@@ -3,16 +3,8 @@ defmodule Kwiq1 do
   Documentation for `Kwiq1`.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Kwiq1.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def hello(timeout) when timeout in (1..11) do
+    :timer.sleep(timeout * 1000)
   end
+
 end
