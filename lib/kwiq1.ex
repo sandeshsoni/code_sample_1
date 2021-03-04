@@ -72,5 +72,11 @@ defmodule Kwiq1 do
     |> Enum.map(&Task.await(&1, 25_000))
   end
 
+  def async_call_api_list(list) do
+    list
+    |> Task.async_stream(fn fun ->  apply(Kwiq1, fun, []) end, timeout: 30_000)
+    |> Enum.to_list()
+  end
+
 
 end
