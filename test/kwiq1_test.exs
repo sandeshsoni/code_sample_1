@@ -23,4 +23,11 @@ defmodule Kwiq1Test do
 
   end
 
+  describe "call all concurrently" do
+
+    test "hello all" do
+      assert Kwiq1.hello_all()
+    end
+  end
+
 end
