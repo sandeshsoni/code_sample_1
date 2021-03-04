@@ -25,9 +25,38 @@ defmodule Kwiq1Test do
 
   describe "call all concurrently" do
 
-    test "hello all" do
-      assert Kwiq1.hello_all()
+    @tag :skip
+    test "hello all, catch exit for above 30 seconds" do
+      list_with_40_sec = [1, 3, 18, 40]
+
+      assert catch_exit Kwiq1.hello_all(list_with_40_sec)
     end
+
+    @tag :skip
+    test "hello all, not catch exit for below 30 seconds" do
+      list_with_20_sec = [1, 3, 18, 20]
+
+      assert Kwiq1.hello_all(list_with_20_sec)
+    end
+  end
+
+  describe "call all concurrently, another attempt" do
+
+    test "api all, catch exit for above 30 seconds" do
+      assert catch_exit Kwiq1.call_api_list api_under_40
+    end
+
+    test "api all, not catch exit for below 30 seconds" do
+      assert Kwiq1.call_api_list api_under_20
+    end
+  end
+
+  #move to setup
+  def api_under_20 do
+    ~w(api1 api2 api3 api4 api5 api10 api15)a
+  end
+  def api_under_40 do
+    ~w(api1 api2 api3 api4 api5 api10 api15 api25 api40)a
   end
 
 end
