@@ -7,4 +7,8 @@ defmodule Kwiq1 do
     :timer.sleep(timeout * 1000)
   end
 
+  def hello(timeout) when timeout==40 do
+    :timer.sleep(timeout * 1000)
+  end
+
 end
