@@ -78,5 +78,10 @@ defmodule Kwiq1 do
     |> Enum.to_list()
   end
 
+  def supervised_call_api_list(list) do
+    Kwiq1.ApiTaskSupervisor
+    |> Task.Supervisor.async_stream_nolink(list, fn fun ->  apply(Kwiq1, fun, []) end, [timeout: 30_000, on_timeout: :kill_task])
+    |> Enum.to_list()
+  end
 
 end

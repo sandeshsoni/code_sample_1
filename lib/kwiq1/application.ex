@@ -10,6 +10,7 @@ defmodule Kwiq1.Application do
     children = [
       # Starts a worker by calling: Kwiq1.Worker.start_link(arg)
       # {Kwiq1.Worker, arg}
+      {Task.Supervisor, name: Kwiq1.ApiTaskSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
